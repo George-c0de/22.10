@@ -26,7 +26,6 @@ def random_headers():
 def get_json(id_posts):
     r = requests.get(f'{choice(api_addr)}/posts?id={id_posts}', headers=random_headers())
     time.sleep(2)
-    # time.sleep(2)
     if r.status_code == 200:
         print(r.json())
         return r.json()
@@ -36,12 +35,7 @@ def get_json(id_posts):
 
 
 if __name__ == "__main__":
-    start = time.monotonic()
     for el in range(1, 11):
         x = threading.Thread(target=get_json, args=(el,))
         x.start()
         x.join()
-
-    end = time.monotonic()
-
-    print((end - start) / 10)
